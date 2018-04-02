@@ -22,10 +22,10 @@ $ docker-compose up
 ## Uso
 
 
-* Airflow: [http://localhost:8080 link](http://localhost:8080)
-* Metabase: [http://localhost:3000 link](http://localhost:3000)
-* Flower: [http://localhost:5555 link](http://localhost:5555)
-* Static: [http://localhost link](http://localhost)
+* Airflow: [http://localhost:8080](http://localhost:8080)
+* Metabase: [http://localhost:3000](http://localhost:3000)
+* Flower: [http://localhost:5555](http://localhost:5555)
+* Static: [http://localhost](http://localhost)
 
 
 ## Credits
