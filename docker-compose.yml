@@ -1,0 +1,113 @@
+version: '3'
+services:
+    redis:
+        image: 'redis:3.2.7'
+
+    postgres:
+        image: postgres:10.3
+        volumes:
+            - .dbcache:/var/lib/postgresql/data
+        env_file:
+            - ./docker.env
+
+    webserver:
+        image: erikriver/docker-airflow:latest
+        restart: always
+        depends_on:
+            - postgres
+            - redis
+        environment:
+            - LOAD_EX=n
+            - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
+            - EXECUTOR=Celery
+        volumes:
+            - ./dags:/usr/local/airflow/dags
+            - ./plugins:/usr/local/airflow/plugins
+            - ./sql:/usr/local/airflow/sql
+            - ./downloads:/usr/local/airflow/downloads
+        ports:
+            - 8080:8080
+        command: webserver
+        env_file:
+            - ./docker.env
+
+    flower:
+        image: erikriver/docker-airflow:latest
+        restart: always
+        depends_on:
+            - redis
+        environment:
+            - EXECUTOR=Celery
+        ports:
+            - 5555:5555
+        command: flower
+
+    scheduler:
+        image: erikriver/docker-airflow:latest
+        restart: always
+        depends_on:
+            - webserver
+        volumes:
+            - ./dags:/usr/local/airflow/dags
+            - ./plugins:/usr/local/airflow/plugins
+            - ./sql:/usr/local/airflow/sql
+            - ./downloads:/usr/local/airflow/downloads
+        environment:
+            - LOAD_EX=n
+            - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
+            - EXECUTOR=Celery
+        command: scheduler
+        env_file:
+            - ./docker.env
+
+    worker:
+        image: erikriver/docker-airflow:latest
+        restart: always
+        depends_on:
+            - scheduler
+        volumes:
+            - ./dags:/usr/local/airflow/dags
+            - ./plugins:/usr/local/airflow/plugins
+            - ./sql:/usr/local/airflow/sql
+            - ./downloads:/usr/local/airflow/downloads
+        environment:
+            - FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
+            - EXECUTOR=Celery
+        command: worker
+        env_file:
+            - ./docker.env
+
+    metabase:
+        image: metabase/metabase
+        ports:
+          - 3000:3000
+        depends_on:
+          - postgres
+        restart: always
+        env_file:
+            - ./docker.env
+
+    elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch:6.2.3
+        volumes:
+            - /usr/share/elasticsearch/data
+        ports:
+            - 9200:9200
+
+    kibana:
+        image: docker.elastic.co/kibana/kibana:6.2.3
+        depends_on:
+            - elasticsearch
+        ports:
+            - 5601:5601
+
+    nginx:
+        image: nginx
+        ports:
+            - 80:80
+        depends_on:
+            - webserver
+            - metabase
+        volumes:
+            - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
+            - ./frontend/build:/usr/share/nginx/html:ro

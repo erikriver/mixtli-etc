@@ -1,0 +1,27 @@
+{% extends "airflow/master.html" %}
+
+{% block title %}Airflow - Upload data{% endblock %}
+
+{% block head_css %}
+{{ super() }}
+
+{% endblock %}
+
+{% block body %}
+<h2>Upload data</h2>
+
+<div id="main_content">
+
+        <form method="POST" enctype="multipart/form-data">
+            {{ form.name }}
+        </form>
+        {{ text }}
+
+</div>
+
+{% endblock %}
+
+{% block tail %}
+{{ super() }}
+
+{% endblock %}

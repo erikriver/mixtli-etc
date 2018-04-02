@@ -1,0 +1,13 @@
+site_name: Reto Ethos
+site_url: http://mixtli-etc.github.io/
+site_description: herramienta tecnológica de detección de actos de corrupción en el sector hidrocarburos, utilizando datos abiertos
+site_author: Erik Rivera
+copyright: Copyright &copy; 2018 <a href="https://twitter.com/erik_river">Erik Rivera</a>.
+repo_url: https://github.com/erikriver/mixtli-etc
+
+markdown_extensions:
+    - toc:
+        permalink: '#'
+theme: flatly
+plugins:
+    - search
