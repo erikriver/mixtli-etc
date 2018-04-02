@@ -22,19 +22,11 @@ $ docker-compose up
 ## Uso
 
 
-Airflow: [http://localhost:8080 link](http://localhost:8080)
-Metabase: [http://localhost:3000 link](http://localhost:3000)
-Flower: [http://localhost:5555 link](http://localhost:5555)
-Static: [http://localhost link](http://localhost)
+* Airflow: [http://localhost:8080 link](http://localhost:8080)
+* Metabase: [http://localhost:3000 link](http://localhost:3000)
+* Flower: [http://localhost:5555 link](http://localhost:5555)
+* Static: [http://localhost link](http://localhost)
 
-
-
-## Contributing
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
 
 ## Credits
 
@@ -42,4 +34,4 @@ Erik Rivera
 @erik_river
 
 ## License
-TODO: Write license
+MIT License
