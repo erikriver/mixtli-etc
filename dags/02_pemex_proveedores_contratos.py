@@ -96,6 +96,4 @@ c_contratos = PythonOperator(
     python_callable=cargar_contratos,
     dag=dag)
 
-e_proveedores >> c_proveedores
-
-e_contratos >> c_contratos
+e_proveedores >> c_proveedores >> e_contratos >> c_contratos
