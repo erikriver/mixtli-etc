@@ -2,6 +2,10 @@
 
 Propuesta de plataforma usando herramientas de ETL, análisis y visualización libres que permita detectar posibles irregularidades y malas prácticas administrativas a partir del análisis de la información obtenida de bases de datos abiertos dentro del sector energético en México
 
+Mas información de la convocatoria en: [Reto Ethos](https://retoethos.org/)
+
+Para ver la documentación del proyecto visite el [wiki](https://github.com/erikriver/mixtli-etc/wiki) de este repositorio.
+
 
 ## Arquitectura
 
@@ -28,10 +32,10 @@ $ docker-compose up
 * Static: [http://localhost](http://localhost)
 
 
-## Credits
+## Creditos
 
-Erik Rivera
-@erik_river
+* Erik Rivera
+* [@erik_river](https://twitter.com/erik_river)
 
-## License
+## Licencia
 MIT License

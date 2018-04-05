@@ -9,6 +9,8 @@ services:
             - .dbcache:/var/lib/postgresql/data
         env_file:
             - ./docker.env
+        ports:
+            - 5432:5432
 
     webserver:
         image: erikriver/docker-airflow:latest
